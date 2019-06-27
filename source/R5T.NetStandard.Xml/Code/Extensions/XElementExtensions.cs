@@ -67,6 +67,7 @@ namespace R5T.NetStandard.Xml
 
         /// <summary>
         /// Get the element with the speicified name, if it exists, or adds an element with the specified if it does not exist.
+        /// Adds the element as well.
         /// </summary>
         public static XElement AcquireElement(this XElement xElement, XName name)
         {
@@ -76,8 +77,31 @@ namespace R5T.NetStandard.Xml
                 return element;
             }
 
-            element = new XElement(name);
+            element = xElement.AddElement(name);
             return element;
+        }
+
+        public static XElement AcquireElement(this XElement xElement, XName name, string value)
+        {
+            var element = xElement.AcquireElement(name);
+
+            element.Value = value;
+
+            return element;
+        }
+
+        public static XElement AddContents(this XElement xElement, object content)
+        {
+            xElement.Add(content);
+
+            return xElement;
+        }
+
+        public static XElement AddContents(this XElement xElement, params object[] contents)
+        {
+            xElement.Add(contents);
+
+            return xElement;
         }
     }
 }
