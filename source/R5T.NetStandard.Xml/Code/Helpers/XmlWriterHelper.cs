@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 
 
@@ -30,6 +31,7 @@ namespace R5T.NetStandard.Xml
         {
             var settings = XmlWriterHelper.GetNoDeclarationXmlWriterSettings();
 
+            settings.Encoding = new UTF8Encoding(false);
             settings.Indent = true;
 
             return settings;
