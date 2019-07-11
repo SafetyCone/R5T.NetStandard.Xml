@@ -60,5 +60,13 @@ namespace R5T.NetStandard.Xml
             var writer = XmlWriter.Create(stream, settings);
             return writer;
         }
+
+        public static XmlWriter New(string xmlFilePath)
+        {
+            var settings = XmlWriterHelper.GetSettings();
+
+            var writer = XmlWriter.Create(xmlFilePath, settings);
+            return writer;
+        }
     }
 }
