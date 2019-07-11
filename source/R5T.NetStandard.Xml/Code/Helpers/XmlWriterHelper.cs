@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Xml;
 
 
@@ -11,40 +10,11 @@ namespace R5T.NetStandard.Xml
         /// <summary>
         /// The System XML writer includes an XML declaration by default, however this is often not desired.
         /// An XML writer can be created with settings specifying to omit the XML declaration, but other settings must be set to get the desired default behavior.
-        /// This method produces XML writer settings that replicate the default settings, except specifying to omit the declaration.
-        /// </summary>
-        public static XmlWriterSettings GetNoDeclarationXmlWriterSettings()
-        {
-            var settings = new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true,
-            };
-
-            return settings;
-        }
-
-        /// <summary>
-        /// Gets the standard XML writer settings.
-        /// </summary>
-        /// <returns></returns>
-        public static XmlWriterSettings GetSettings()
-        {
-            var settings = XmlWriterHelper.GetNoDeclarationXmlWriterSettings();
-
-            settings.Encoding = new UTF8Encoding(false);
-            settings.Indent = true;
-
-            return settings;
-        }
-
-        /// <summary>
-        /// The System XML writer includes an XML declaration by default, however this is often not desired.
-        /// An XML writer can be created with settings specifying to omit the XML declaration, but other settings must be set to get the desired default behavior.
         /// This method produces an XML writer that omits the declaration.
         /// </summary>
         public static XmlWriter NewOmitDeclaration(Stream stream)
         {
-            var settings = XmlWriterHelper.GetNoDeclarationXmlWriterSettings();
+            var settings = XmlWriterSettingsHelper.GetNoDeclaration();
 
             var writer = XmlWriter.Create(stream, settings);
             return writer;
@@ -55,7 +25,7 @@ namespace R5T.NetStandard.Xml
         /// </summary>
         public static XmlWriter New(Stream stream)
         {
-            var settings = XmlWriterHelper.GetSettings();
+            var settings = XmlWriterSettingsHelper.GetStandardSettings();
 
             var writer = XmlWriter.Create(stream, settings);
             return writer;
@@ -63,7 +33,7 @@ namespace R5T.NetStandard.Xml
 
         public static XmlWriter New(string xmlFilePath)
         {
-            var settings = XmlWriterHelper.GetSettings();
+            var settings = XmlWriterSettingsHelper.GetStandardSettings();
 
             var writer = XmlWriter.Create(xmlFilePath, settings);
             return writer;
