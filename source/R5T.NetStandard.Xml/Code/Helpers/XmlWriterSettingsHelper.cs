@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Xml;
 using System.Text;
+using System.Xml;
 
 
 namespace R5T.NetStandard.Xml
@@ -25,7 +25,6 @@ namespace R5T.NetStandard.Xml
         /// <summary>
         /// Gets the standard XML writer settings.
         /// </summary>
-        /// <returns></returns>
         public static XmlWriterSettings GetStandardSettings()
         {
             var settings = XmlWriterSettingsHelper.GetNoDeclaration();
